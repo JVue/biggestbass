@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8' http-equiv="refresh" content="30"/>
+    <title>Biggest Bass Leaderboard</title>
+    <!--<link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' rel='stylesheet' />-->
+    <link href="../css/bootstrap-combined.min.css" rel='stylesheet'/>
+  </head>
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    }
+
+    tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
+  <%= @user_session_status %>
+  <br><br><br>
+  <body class='container'>
+    <h1 align="center"><%= @title %></h1><br>
+    <table style="width:100%">
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Entry Fee Paid</th>
+        <th>Largemouth Weight (lbs-oz)</th>
+        <th>Smallmouth Weight (lbs-oz)</th>
+        <th>Total Weight (lbs-oz)</th>
+        <th>Behind Leader By (lbs-oz)</th>
+      </tr>
+      <% @bb_table.each do |row| %>
+      <tr>
+        <td><%=row['rank']%></td>
+        <td><%=row['name']%></td>
+        <td><%=row['entry_fee_paid']%></td>
+        <td><%=row['largemouth_weight']%></td>
+        <td><%=row['smallmouth_weight']%></td>
+        <td><%=row['total_weight']%></td>
+        <td><%=row['deficit']%></td>
+      </tr>
+      <% end %>
+    </table>
+    <p><br><br><br></p>
+    <%= @submit_weight %>
+    <p><br><br></p>
+    <h4 align="center">Global Actions History</h4>
+    <table style="width:100%">
+      <tr>
+        <th>DateTime</th>
+        <th>User</th>
+        <th>Action</th>
+      </tr>
+      <% @bb_history.each do |row| %>
+      <tr>
+        <td><%=row['datetime']%></td>
+        <td><%=row['name']%></td>
+        <td><%=row['action']%></td>
+      </tr>
+      <% end %>
+    </table
+  </body>
+</html>
